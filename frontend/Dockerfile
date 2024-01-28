@@ -1,7 +1,8 @@
 FROM node:14.21.3-alpine3.17
-ENV NODE_ENV production
-USER node
+RUN apk add dumb-init
 WORKDIR /app
-COPY --chown=node:node . .
+COPY . .
 RUN npm install
-CMD ["npm", "start"]
+RUN npm run build
+RUN npm install -g serve
+CMD ["dumb-init", "serve", "-s", "build"]
