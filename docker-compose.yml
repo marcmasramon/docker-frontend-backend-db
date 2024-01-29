@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   web:
     build: ./frontend
@@ -16,7 +15,6 @@ services:
       - "3001:3001"
     networks: 
      - network-backend
-  
   mongo:
     image: mongo
     restart: always
